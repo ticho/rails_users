@@ -1,0 +1,31 @@
+<h1>Create a new user</h1>
+
+<% if @errors.any? %>
+L'utilisateur n'a pas été créé car :
+<ul>
+<% @errors.messages.each do |error| %>
+  <li><%= error[0] %></li>
+  <ul>
+  <% error[1].each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
+</ul>
+
+<% end %>
+
+<form action="/users/new" method="post">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<div>
+Name :
+  <input type="text" name="username" placeholder="Enter name">
+</div>
+<div>
+ Bio :
+  <textarea name="bio" rows="4" cols="50">Enter bio</textarea>
+</div>
+<div>
+  <button type="submit">Créer le nouvel utilisateur</button>
+</div>
+</form>
