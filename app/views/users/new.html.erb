@@ -1,8 +1,11 @@
 <div class="container">
 <h1>Create a new user</h1>
 
+
+<%# appears if an error was found and displays it  %>
 <% if @errors.any? %>
-L'utilisateur n'a pas été créé car :
+<div class="alert alert-danger" role="alert">
+<strong>L'utilisateur n'a pas été créé car :</strong>
 <ul>
 <% @errors.messages.each do |error| %>
   <li><%= error[0] %></li>
@@ -13,6 +16,7 @@ L'utilisateur n'a pas été créé car :
   </ul>
 <% end %>
 </ul>
+</div>
 
 <% end %>
 

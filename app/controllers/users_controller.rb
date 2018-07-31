@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  # needed to initialize @errors
   def new
     @errors = []
   end
@@ -8,17 +9,17 @@ class UsersController < ApplicationController
       username: params[:username],
       bio: params[:bio]
     )
-    respond_to do |format|
-      if user.errors.any?
-        @errors = user.errors
-        format.html { render :new }
-      else
-        format.html { redirect_to root_path }
-      end
+    # if there was an error, display them, otherwise redirect to homepage
+    if user.errors.any?
+      @errors = user.errors
+      render :new
+    else
+      redirect_to root_path 
     end
   end
 
   def show
+    # trying to figure out if the parameter is an integer or a string, not a good way
     if params[:id].to_i.to_s == params[:id]
       @user = User.find(params[:id])
     else
@@ -26,6 +27,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # pass all users to the view
   def all
     @users = User.all
   end

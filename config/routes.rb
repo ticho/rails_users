@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
-  # get 'static_pages/index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get 'users' => 'users#all'
-  get 'users/new' => 'users#new'
-  post 'users/new' => 'users#create'
-
-  get 'users/:id' => 'users#show'
+  # routes handled by the app
+  get 'users', to: 'users#all', as: 'all'
+  get 'users/new', to: 'users#new', as: 'new_user'
+  post 'users/new', to: 'users#create', as: 'create_user'
+  get 'users/:id', to: 'users#show', as: 'show_user'
 
   root 'static_pages#index'
 end
